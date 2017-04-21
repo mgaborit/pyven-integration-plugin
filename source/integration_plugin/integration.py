@@ -38,7 +38,7 @@ class Integration(Process):
                     Logger.get().info(line)
             
             self.parser.parse(os.path.join(self.cwd, self._format_report_name()))
-            if returncode != 0:
+            if returncode != 0 or len(self.parser.errors) > 0:
                 self.status = pyven.constants.STATUS[1]
                 if os.path.isfile(os.path.join(self.cwd, self._format_report_name())):
                     self.errors = self.parser.errors
